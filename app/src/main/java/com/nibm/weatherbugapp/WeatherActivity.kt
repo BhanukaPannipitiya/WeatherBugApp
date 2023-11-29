@@ -24,6 +24,10 @@ import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -76,11 +80,20 @@ class WeatherActivity : AppCompatActivity() {
         // Initialize the FusedLocationProviderClient
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+            LOCATION_PERMISSION_REQUEST_CODE
+        )
         // Get the current date and time
         getCurrentDateTime()
-
+        requestPermission()
         // Get the current location, temperature, weather description, and weather icon for the current location
-        getCurrentLocation()
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(4000)
+            // Get the current location, temperature, weather description, and weather icon for the current location
+            getCurrentLocation()
+        }
         // Assuming you are inside an Activity
 
 
@@ -127,7 +140,16 @@ class WeatherActivity : AppCompatActivity() {
         txtDataAndTime.text = formattedDate
     }
 
+    private fun requestPermission()
+    {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+            LOCATION_PERMISSION_REQUEST_CODE
+        )
+    }
     private fun getCurrentLocation() {
+
         // Check location permission
         if (ContextCompat.checkSelfPermission(
                 this,
@@ -175,6 +197,8 @@ class WeatherActivity : AppCompatActivity() {
                 try {
                     val cityName = data.getString("name")
                     val temperature = data.getJSONObject("main").getDouble("temp")
+                    val temperatureInCelsius = temperature - 273.15
+                    val formattedTemperature = String.format("%.2f", temperatureInCelsius)
                     val pressure = data.getJSONObject("main").getDouble("pressure")
                     val humidity = data.getJSONObject("main").getDouble("humidity")
                     val windSpeed = data.getJSONObject("wind").getDouble("speed")
@@ -192,7 +216,7 @@ class WeatherActivity : AppCompatActivity() {
 
                     // Display the location name, temperature, and weather description
                     txtCountry.text = cityName
-                    txtCelcius2.text = "${temperature}°C"
+                    txtCelcius2.text = "${formattedTemperature}°C"
                     txtDescription.text = description.toUpperCase()
 
                     // Display the additional weather details
@@ -233,6 +257,8 @@ class WeatherActivity : AppCompatActivity() {
                 try {
                     // Extract weather information and update UI
                     val temperature = data.getJSONObject("main").getDouble("temp")
+                    val temperatureInCelsius = temperature - 273.15
+                    val formattedTemperature = String.format("%.2f", temperatureInCelsius)
                     val pressure = data.getJSONObject("main").getDouble("pressure")
                     val humidity = data.getJSONObject("main").getDouble("humidity")
                     val windSpeed = data.getJSONObject("wind").getDouble("speed")
@@ -250,7 +276,7 @@ class WeatherActivity : AppCompatActivity() {
 
                     // Display the location name, temperature, and weather description
                     txtCountry.text = cityName
-                    txtCelcius2.text = "${temperature}°C"
+                    txtCelcius2.text = "${formattedTemperature}°C"
                     txtDescription.text = description.toUpperCase()
 
                     // Display the additional weather details
