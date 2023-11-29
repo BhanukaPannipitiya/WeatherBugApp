@@ -44,6 +44,10 @@ class ForcastActivity : AppCompatActivity() {
     private lateinit var imageView4: ImageView
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var searchBar: EditText
+    private lateinit var txtTemp1:TextView
+    private lateinit var txtTemp2:TextView
+    private lateinit var txtTemp3:TextView
+    private lateinit var txtTemp4:TextView
     private val apiKey = "7df53ab1cb496bd0eed2ef64eddec83e"
 
     companion object {
@@ -69,6 +73,10 @@ class ForcastActivity : AppCompatActivity() {
         txtDate4 = findViewById(R.id.textDate4)
         textDescription4 = findViewById(R.id.textDescription4)
         imageView4 = findViewById(R.id.imageView4)
+        txtTemp1 = findViewById(R.id.txtTemp1)
+        txtTemp2 = findViewById(R.id.txtTemp2)
+        txtTemp3 = findViewById(R.id.txtTemp3)
+        txtTemp4 = findViewById(R.id.txtTemp4)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         searchBar = findViewById(R.id.search_bar)
@@ -214,22 +222,26 @@ class ForcastActivity : AppCompatActivity() {
 
             when (i) {
                 1 -> {
-                    txtDate1.text = "$date: ${formattedTemperature}°C"
+                    txtDate1.text = "$date"
+                    txtTemp1.text="${formattedTemperature}°C"
                     textDescription1.text = weather
                     loadWeatherIcon(icon, imageView1)
                 }
                 2 -> {
-                    txtDate2.text = "$date: ${formattedTemperature}°C"
+                    txtDate2.text = "$date"
+                    txtTemp2.text="${formattedTemperature}°C"
                     textDescription2.text = weather
                     loadWeatherIcon(icon, imageView2)
                 }
                 3 -> {
-                    txtDate3.text = "$date: ${formattedTemperature}°C"
+                    txtDate3.text = "$date"
+                    txtTemp3.text="${formattedTemperature}°C"
                     textDescription3.text = weather
                     loadWeatherIcon(icon, imageView3)
                 }
                 4 -> {
-                    txtDate4.text = "$date: ${formattedTemperature}°C"
+                    txtDate4.text = "$date"
+                    txtTemp4.text="${formattedTemperature}°C"
                     textDescription4.text = weather
                     loadWeatherIcon(icon, imageView4)
                 }
@@ -263,22 +275,26 @@ class ForcastActivity : AppCompatActivity() {
 
                 when (i) {
                     0 -> {
-                        txtDate1.text = "$date: ${formattedTemperature}°C"
+                        txtDate1.text = "$date"
+                        txtTemp1.text="${formattedTemperature}°C"
                         textDescription1.text = weather
                         loadWeatherIcon(icon, imageView1)
                     }
                     1 -> {
-                        txtDate2.text = "$date: ${formattedTemperature}°C"
+                        txtDate2.text = "$date"
+                        txtTemp2.text="${formattedTemperature}°C"
                         textDescription2.text = weather
                         loadWeatherIcon(icon, imageView2)
                     }
                     2 -> {
-                        txtDate3.text = "$date: ${formattedTemperature}°C"
+                        txtDate3.text = "$date"
+                        txtTemp3.text="${formattedTemperature}°C"
                         textDescription3.text = weather
                         loadWeatherIcon(icon, imageView3)
                     }
                     3 -> {
-                        txtDate4.text = "$date: ${formattedTemperature}°C"
+                        txtDate4.text = "$date"
+                        txtTemp4.text="${formattedTemperature}°C"
                         textDescription4.text = weather
                         loadWeatherIcon(icon, imageView4)
                     }

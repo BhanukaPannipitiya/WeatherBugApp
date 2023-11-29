@@ -1,10 +1,9 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="#6DB9EF"
+    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -18,27 +17,23 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
                 android:id="@+id/search_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/search_bar"
+                style="@style/SearchInputField"
+                android:layout_width="350dp"
+                android:layout_height="45dp"
                 android:drawableRight="@drawable/search"
-                android:gravity="center"
-                android:hint="Enter city name "
-                android:padding="12dp"
-                android:textColor="#3A3A3A"
-                android:textColorHint="@color/black"
-                android:textSize="18sp"
-                tools:ignore="MissingConstraints" />
+                android:drawablePadding="8dp"
+                android:hint="Enter city name"
+                android:textSize="12sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Text Location -->
@@ -54,27 +49,28 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchBarLayout" />
-<!--scroll view-->
+        <!--scroll view-->
 
 
         <!-- CardViews (Rectangles) -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/rectangle1"
             style="@style/Widget.MaterialComponents.CardView"
-            android:layout_width="0dp"
+            android:layout_width="300dp"
             android:layout_height="150dp"
-            app:cardBackgroundColor="#3D3F45"
-            app:cardCornerRadius="8dp"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="#80FFFFFF"
+            app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_location"
-            android:layout_marginTop="16dp">
+            app:strokeWidth="0dp">
 
             <!-- Content Inside Rectangle 1 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_marginBottom="5dp">
 
                 <ImageView
                     android:id="@+id/imageView1"
@@ -88,17 +84,30 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    >
 
                     <TextView
                         android:id="@+id/txtDate1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="0dp"
                         android:text="Date"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/txtTemp1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="Temperature"
+                        android:textColor="#FFFFFF"
+                        android:textSize="23sp" />
 
                     <TextView
                         android:id="@+id/textDescription1"
@@ -108,7 +117,7 @@
                         android:layout_marginTop="5dp"
                         android:text="Weather"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -122,13 +131,15 @@
 
             android:id="@+id/rectangle2"
             style="@style/Widget.MaterialComponents.CardView"
-            android:layout_width="0dp"
+            android:layout_width="300dp"
             android:layout_height="150dp"
-            app:cardBackgroundColor="#3D3F45"
-            app:cardCornerRadius="8dp"
+            android:layout_marginTop="8dp"
+            app:cardBackgroundColor="#80FFFFFF"
+            app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rectangle1">
+            app:layout_constraintTop_toBottomOf="@+id/rectangle1"
+            app:strokeWidth="0dp">
 
             <!-- Content Inside Rectangle 2 -->
             <LinearLayout
@@ -155,10 +166,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="28dp"
                         android:text="Date"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/txtTemp2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="Temperature"
+                        android:textColor="#FFFFFF"
+                        android:textSize="23sp" />
 
                     <TextView
                         android:id="@+id/textDescription2"
@@ -168,7 +189,7 @@
                         android:layout_marginTop="5dp"
                         android:text="Weather"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -180,16 +201,18 @@
         <!--start of 3rd card-->
         <com.google.android.material.card.MaterialCardView
 
-            style="@style/Widget.MaterialComponents.CardView"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            app:cardBackgroundColor="#3D3F45"
             android:id="@+id/rectangle3"
-            app:cardCornerRadius="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/rectangle2"
-            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Widget.MaterialComponents.CardView"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="8dp"
+            android:paddingEnd="5dp"
+            app:cardBackgroundColor="#80FFFFFF"
+            app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-           >
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rectangle2"
+            app:strokeWidth="0dp">
 
             <!-- Content Inside Rectangle 2 -->
             <LinearLayout
@@ -211,15 +234,26 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
+
                     <TextView
                         android:id="@+id/textDate3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="28dp"
                         android:text="Date"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/txtTemp3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="Temperature"
+                        android:textColor="#FFFFFF"
+                        android:textSize="23sp" />
 
                     <TextView
                         android:id="@+id/textDescription3"
@@ -229,7 +263,7 @@
                         android:layout_marginTop="5dp"
                         android:text="Weather"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -241,16 +275,17 @@
         <!-- start of 4th card-->
         <com.google.android.material.card.MaterialCardView
 
-            style="@style/Widget.MaterialComponents.CardView"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            app:cardBackgroundColor="#3D3F45"
             android:id="@+id/rectangle4"
-            app:cardCornerRadius="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/rectangle3"
-            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Widget.MaterialComponents.CardView"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="8dp"
+            app:cardBackgroundColor="#80FFFFFF"
+            app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            >
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rectangle3"
+            app:strokeWidth="0dp">
 
             <!-- Content Inside Rectangle 2 -->
             <LinearLayout
@@ -277,10 +312,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="28dp"
                         android:text="Date"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/txtTemp4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="Temperature"
+                        android:textColor="#FFFFFF"
+                        android:textSize="23sp" />
 
                     <TextView
                         android:id="@+id/textDescription4"
@@ -290,7 +335,7 @@
                         android:layout_marginTop="5dp"
                         android:text="Weather"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
