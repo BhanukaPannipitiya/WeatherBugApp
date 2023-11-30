@@ -25,22 +25,26 @@
 
             <TextView
                 android:id="@+id/txt_country"
+                style="@style/Widget.MaterialComponents.Snackbar.TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Location"
                 android:textAlignment="center"
                 android:textColor="#ffff"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textSize="40sp"
+                android:textStyle="bold|italic" />
 
             <EditText
                 android:id="@+id/search_bar"
                 style="@style/SearchInputField"
-                android:drawablePadding="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/search"
-                android:hint="Enter city name" />
+                android:drawablePadding="8dp"
+                android:hint="Enter city name"
+                android:textColor="#FDFDFD"
+                android:textColorHint="#FFFFFF"
+                android:textSize="20sp" />
 
 
             <!-- Search Button -->

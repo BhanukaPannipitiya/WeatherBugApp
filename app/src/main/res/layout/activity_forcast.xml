@@ -11,10 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
+
         <!-- Search Bar -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/searchBarLayout"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:boxCornerRadiusBottomEnd="10dp"
@@ -28,12 +30,14 @@
             <EditText
                 android:id="@+id/search_bar"
                 style="@style/SearchInputField"
-                android:layout_width="350dp"
-                android:layout_height="45dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
                 android:drawableRight="@drawable/search"
-                android:drawablePadding="8dp"
+                android:drawablePadding="30dp"
                 android:hint="Enter city name"
-                android:textSize="12sp" />
+                android:textColor="#F8F8F8"
+                android:textColorHint="#F6F2F2"
+                android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Text Location -->
@@ -50,7 +54,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchBarLayout" />
         <!--scroll view-->
-
 
         <!-- CardViews (Rectangles) -->
         <com.google.android.material.card.MaterialCardView

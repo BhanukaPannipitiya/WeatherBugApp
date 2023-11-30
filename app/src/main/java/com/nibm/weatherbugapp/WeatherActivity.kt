@@ -57,12 +57,10 @@ class WeatherActivity : AppCompatActivity() {
         setContentView(R.layout.activity_weather_home)
         val button: Button = findViewById(R.id.button)
 
-        // Set a click listener for the button
+
         button.setOnClickListener(View.OnClickListener {
             // Create an Intent to navigate to ForeCastDashBoard
             val intent = Intent(this@WeatherActivity, ForcastActivity::class.java)
-
-            // Start the ForeCastDashBoard activity
             startActivity(intent)
         })
         txtDataAndTime = findViewById(R.id.txt_dataAndTime)
@@ -70,12 +68,10 @@ class WeatherActivity : AppCompatActivity() {
         txtCelcius2 = findViewById(R.id.txt_celcius2)
         txtDescription = findViewById(R.id.txt_description)
         imgWeatherImg = findViewById(R.id.img_weatherImg)
-
-        // Initialize the additional TextView elements
         txtPressureDetails = findViewById(R.id.txt_pressureDetails)
         txtHumidityDetails = findViewById(R.id.txt_humidityDetails)
         txtTempDetails = findViewById(R.id.txt_TempDetails)
-        txtWeatherDetails = findViewById(R.id.txt_WindSpeedDetails) // Updated ID
+        txtWeatherDetails = findViewById(R.id.txt_WindSpeedDetails)
 
         // Initialize the FusedLocationProviderClient
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -87,28 +83,25 @@ class WeatherActivity : AppCompatActivity() {
         )
         // Get the current date and time
         getCurrentDateTime()
+        getCurrentLocation()
         requestPermission()
         // Get the current location, temperature, weather description, and weather icon for the current location
         CoroutineScope(Dispatchers.Main).launch {
             delay(4000)
-            // Get the current location, temperature, weather description, and weather icon for the current location
+
             getCurrentLocation()
         }
-        // Assuming you are inside an Activity
 
 
 
-        // Set OnClickListener for the search button
-
-
-        // Add the new code for handling the drawableRight click
+        // Adding the new code for handle the drawableRight click
         val searchBar = findViewById<EditText>(R.id.search_bar)
         searchBar.setOnTouchListener { _, event ->
             val DRAWABLE_RIGHT = 2
 
             if (event.action == MotionEvent.ACTION_UP) {
                 if (event.rawX >= (searchBar.right - searchBar.compoundDrawables[DRAWABLE_RIGHT].bounds.width())) {
-                    // The drawableRight icon was clicked
+
                     onSearchButtonClick()
                     return@setOnTouchListener true
                 }
@@ -120,10 +113,10 @@ class WeatherActivity : AppCompatActivity() {
     }
 
     private fun onSearchButtonClick() {
-        // Place the code you want to execute when the search button or drawableRight is clicked
+
         val cityName = findViewById<EditText>(R.id.search_bar).text.toString()
         if (cityName.isNotEmpty()) {
-            // Call a method to get weather information for the searched city
+            // trigger below method to get weather information for the searched city
             getWeatherForCity(cityName)
         } else {
             Toast.makeText(this, "Please enter a city name", Toast.LENGTH_SHORT).show()
@@ -131,7 +124,7 @@ class WeatherActivity : AppCompatActivity() {
     }
 
     private fun getCurrentDateTime() {
-        // Get the current date and time using the device's time zone
+        // Get the current date and time
         val calendar = Calendar.getInstance()
         val sdf = SimpleDateFormat("MMMM dd (EEE) | hh:mm a", Locale.getDefault())
         val formattedDate = sdf.format(calendar.time)
@@ -160,18 +153,17 @@ class WeatherActivity : AppCompatActivity() {
             fusedLocationClient.lastLocation
                 .addOnSuccessListener { location ->
                     if (location != null) {
-                        // Assuming you are inside an Activity
-// Get and display the current temperature, weather description, and weather icon
+
+                       // getWeather function trigger to get weather details
                         getWeatherData(location.latitude, location.longitude)
                     } else {
-                        // Assuming you are inside an Activity
 
                         // Handle the case when location is null
                         txtCountry.text = "Location: Unknown"
                     }
                 }
                 .addOnFailureListener { e ->
-                    // Handle errors that may occur while getting the location
+                    // Handle errors
                     Toast.makeText(
                         this,
                         "Error getting location: ${e.message}",
@@ -179,7 +171,7 @@ class WeatherActivity : AppCompatActivity() {
                     ).show()
                 }
         } else {
-            // Request location permission if not granted
+            // Request location permission
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
@@ -214,7 +206,7 @@ class WeatherActivity : AppCompatActivity() {
                         ""
                     }
 
-                    // Display the location name, temperature, and weather description
+                    // Display details
                     txtCountry.text = cityName
                     txtCelcius2.text = "${formattedTemperature}°C"
                     txtDescription.text = description.toUpperCase()
@@ -253,7 +245,7 @@ class WeatherActivity : AppCompatActivity() {
         val request = JsonObjectRequest(
             Request.Method.GET, apiUrl, null,
             { data ->
-                // Handle the JSON response for the searched city
+                // Handle the JSON response
                 try {
                     // Extract weather information and update UI
                     val temperature = data.getJSONObject("main").getDouble("temp")
@@ -309,10 +301,10 @@ class WeatherActivity : AppCompatActivity() {
     }
 
     private fun displayWeatherIcon(iconCode: String) {
-        // Construct the URL for the weather icon
+        // URL for the weather icon
         val iconUrl = "https://openweathermap.org/img/w/$iconCode.png"
 
-        // Use Picasso library to load and display the weather icon
+        // display the weather icon
         Picasso.get().load(iconUrl).into(imgWeatherImg)
     }
 

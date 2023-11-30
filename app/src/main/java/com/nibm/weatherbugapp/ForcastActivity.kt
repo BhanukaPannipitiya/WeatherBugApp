@@ -83,9 +83,14 @@ class ForcastActivity : AppCompatActivity() {
 
         searchBar.setOnTouchListener { _, event ->
             val DRAWABLE_RIGHT = 2
+            // Define a margin for the clickable area
+            val extraClickArea = 50
 
             if (event.action == MotionEvent.ACTION_UP) {
-                if (event.rawX >= (searchBar.right - searchBar.compoundDrawables[DRAWABLE_RIGHT].bounds.width())) {
+                val drawableBounds = searchBar.compoundDrawables[DRAWABLE_RIGHT].bounds
+
+                // Adjust the condition to check within a specific area
+                if (event.rawX >= (searchBar.right - drawableBounds.width() - extraClickArea)) {
                     onSearchButtonClick()
                     return@setOnTouchListener true
                 }
@@ -253,10 +258,10 @@ class ForcastActivity : AppCompatActivity() {
         try {
             val forecastList = data.getJSONArray("list")
 
-            // Adjusted to start from the current date when searching for a particular city
+            // take current date
             val currentDate = Calendar.getInstance()
 
-            // Assuming here that the user is interested in the next three days' forecast
+            // getting next 4 days forcast
             for (i in 0 until 4) {
                 val forecastItem = forecastList.getJSONObject(i * 8)
                 val main = forecastItem.getJSONObject("main")
