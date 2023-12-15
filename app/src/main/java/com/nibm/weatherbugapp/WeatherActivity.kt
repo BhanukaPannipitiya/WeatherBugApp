@@ -7,6 +7,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.Location
 import android.location.LocationManager
 import android.view.MotionEvent
@@ -56,7 +57,8 @@ class WeatherActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather_home)
         val button: Button = findViewById(R.id.button)
-
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setNavigationBarColor(Color.TRANSPARENT);
 
         button.setOnClickListener(View.OnClickListener {
             // Create an Intent to navigate to ForeCastDashBoard
@@ -95,13 +97,32 @@ class WeatherActivity : AppCompatActivity() {
 
 
         // Adding the new code for handle the drawableRight click
+//        val searchBar = findViewById<EditText>(R.id.search_bar)
+//        searchBar.setOnTouchListener { _, event ->
+//            val DRAWABLE_RIGHT = 2
+//
+//            if (event.action == MotionEvent.ACTION_UP) {
+//                if (event.rawX >= (searchBar.right - searchBar.compoundDrawables[DRAWABLE_RIGHT].bounds.width())) {
+//
+//                    onSearchButtonClick()
+//                    return@setOnTouchListener true
+//                }
+//            }
+//            false
+//        }
+
         val searchBar = findViewById<EditText>(R.id.search_bar)
+
         searchBar.setOnTouchListener { _, event ->
             val DRAWABLE_RIGHT = 2
+            // Define a margin for the clickable area
+            val extraClickArea = 50
 
             if (event.action == MotionEvent.ACTION_UP) {
-                if (event.rawX >= (searchBar.right - searchBar.compoundDrawables[DRAWABLE_RIGHT].bounds.width())) {
+                val drawableBounds = searchBar.compoundDrawables[DRAWABLE_RIGHT].bounds
 
+                // Adjust the condition to check within a specific area
+                if (event.rawX >= (searchBar.right - drawableBounds.width() - extraClickArea)) {
                     onSearchButtonClick()
                     return@setOnTouchListener true
                 }
