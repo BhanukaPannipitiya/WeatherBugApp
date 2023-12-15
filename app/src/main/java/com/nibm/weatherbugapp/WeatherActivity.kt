@@ -57,8 +57,7 @@ class WeatherActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather_home)
         val button: Button = findViewById(R.id.button)
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
-        getWindow().setNavigationBarColor(Color.TRANSPARENT);
+
 
         button.setOnClickListener(View.OnClickListener {
             // Create an Intent to navigate to ForeCastDashBoard
